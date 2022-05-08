@@ -4,6 +4,15 @@ class Movement extends Phaser.Scene {
     }
 
     create() {
+        //Adding tilemap
+        const map1 = this.make.tilemap({key: 'dungeon'});
+        //dungeon = tilemap json key, tilesDungeon = the image key created in Load.js
+        const tileset = map1.addTilesetImage('dungeon', 'tilesDungeon');
+
+        //Creates layers matching the layers we made in Tiled software
+        map1.createStaticLayer('Ground', tileset);
+        map1.createStaticLayer('Walls', tileset);
+        
         // variables and settings
         this.VELOCITY = 500;
         this.DRAG = 800;    // DRAG < ACCELERATION = icy slide
