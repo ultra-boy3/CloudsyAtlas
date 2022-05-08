@@ -10,9 +10,12 @@ class Movement extends Phaser.Scene {
         const tileset = map1.addTilesetImage('dungeon', 'tilesDungeon');
 
         //Creates layers matching the layers we made in Tiled software
-        map1.createStaticLayer('Ground', tileset);
-        map1.createStaticLayer('Walls', tileset);
+        map1.createLayer('Ground', tileset);
+        let wallsLayer = map1.createLayer('Walls', tileset);
         
+        wallsLayer.setCollisionByProperty( {collides: true} );
+        //Now this layer can be given collision rules just like any other physics body (see below)
+
         // variables and settings
         this.VELOCITY = 500;
         this.DRAG = 800;    // DRAG < ACCELERATION = icy slide
@@ -142,13 +145,14 @@ class Movement extends Phaser.Scene {
         });
 
         // make player avatar 🧍
-        this.player = this.physics.add.sprite(game.config.width/2, game.config.height/2, 'link_atlas', 'idle_down_0001').setScale(this.AVATAR_SCALE);
+        this.player = this.physics.add.sprite(game.config.width/2 + 100, game.config.height/2 - 100, 'link_atlas', 'idle_down_0001').setScale(this.AVATAR_SCALE);
         
         // Use Phaser-provided cursor key creation function
         cursors = this.input.keyboard.createCursorKeys();
 
         // Add physics collider to make player stay on top of the ground
         this.physics.add.collider(this.player, this.ground);
+        this.physics.add.collider(this.player, wallsLayer);
     }
 
     update() {
