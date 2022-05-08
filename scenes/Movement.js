@@ -15,6 +15,9 @@ class Movement extends Phaser.Scene {
         
         wallsLayer.setCollisionByProperty( {collides: true} );
         //Now this layer can be given collision rules just like any other physics body (see below)
+        //The collision shape of tiles is square by default - not matching the sprites of the
+        //individual tiles.
+        //But perhaps we can change this in Tiled
 
         // variables and settings
         this.VELOCITY = 500;
