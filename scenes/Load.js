@@ -17,7 +17,9 @@ class Load extends Phaser.Scene {
         this.load.image('cloud', 'white-cloud.png');
         this.load.atlas('link_atlas', 'linksheet.png', 'linkmap.json');
         
-
+        // load tileset and tilemap
+        this.load.image('tilesDungeon', '0x72_DungeonTilesetII_v1.4/0x72_DungeonTilesetII_v1.4.png')
+        
     }
 
     create() {

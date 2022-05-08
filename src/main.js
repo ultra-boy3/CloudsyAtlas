@@ -27,7 +27,10 @@ let config = {
             }
         }
     },
-    scene: [ Load, Movement ]
+    scene: [ Load, Movement ],
+    scale: { //HOW TO MAKE GAME BIGGER
+        zoom: 2
+    }
 };
 
 let game = new Phaser.Game(config);
